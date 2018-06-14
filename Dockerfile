@@ -5,7 +5,7 @@
 # Use the centos 7 base image
 FROM centos:7
 
-MAINTAINER fbascheper <temp01@fam-scheper.nl>
+MAINTAINER yldgio <yldgio@gmail.com>
 
 # Update the system
 RUN yum -y update;yum clean all
@@ -13,13 +13,10 @@ RUN yum -y update;yum clean all
 ##########################################################
 # Install Java JDK
 ##########################################################
-RUN yum -y install wget && \
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm && \
-    echo "881ee6070efcb427204f04c98db9a173  jdk-8u92-linux-x64.rpm" >> MD5SUM && \
-    md5sum -c MD5SUM && \
-    rpm -Uvh jdk-8u92-linux-x64.rpm && \
-    yum -y remove wget && \
-    rm -f jdk-8u92-linux-x64.rpm MD5SUM
+COPY jdk-8u92-linux-x64.rpm /home/
+
+RUN rpm -Uvh /home/jdk-8u92-linux-x64.rpm && \
+    rm -f /home/jdk-8u92-linux-x64.rpm
 
 ENV JAVA_HOME /usr/java/jdk1.8.0_92
 
@@ -29,21 +26,18 @@ ENV JAVA_HOME /usr/java/jdk1.8.0_92
 ##########################################################
 
 RUN groupadd -r soapui && useradd -r -g soapui -m -d /home/soapui soapui
-
-RUN yum -y install wget && yum -y install tar && \
-    wget --no-check-certificate --no-cookies http://cdn01.downloads.smartbear.com/soapui/5.2.1/SoapUI-5.2.1-linux-bin.tar.gz && \
-    echo "ba51c369cee1014319146474334fb4e1  SoapUI-5.2.1-linux-bin.tar.gz" >> MD5SUM && \
-    md5sum -c MD5SUM && \
-    tar -xzf SoapUI-5.2.1-linux-bin.tar.gz -C /home/soapui && \
-    yum -y remove wget && yum -y remove tar && \
-    rm -f SoapUI-5.2.1-linux-bin.tar.gz MD5SUM
+COPY SoapUI-5.2.1-linux-bin.tar.gz /home/
+RUN yum -y install tar && \
+    tar -xzf /home/SoapUI-5.2.1-linux-bin.tar.gz -C /home/soapui
+#RUN yum -y remove tar
+RUN rm -f /home/SoapUI-5.2.1-linux-bin.tar.gz
 
 RUN chown -R soapui:soapui /home/soapui
 RUN find /home/soapui -type d -execdir chmod 770 {} \;
 RUN find /home/soapui -type f -execdir chmod 660 {} \;
 
 RUN yum -y install curl && \
-    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.3/gosu-amd64" && \
+    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64" && \
     chmod +x /usr/local/bin/gosu
 
 ############################################
@@ -54,10 +48,12 @@ USER soapui
 ENV HOME /home/soapui
 ENV SOAPUI_DIR /home/soapui/SoapUI-5.2.1
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
+ENV MOCK_SERVICE_PORT 8088
 
 ############################################
 # Add customization sub-directories (for entrypoint)
 ############################################
+
 ADD docker-entrypoint-initdb.d  /docker-entrypoint-initdb.d
 ADD soapui-prj                  $SOAPUI_PRJ
 
@@ -66,7 +62,7 @@ ADD soapui-prj                  $SOAPUI_PRJ
 ############################################
 USER root
 
-EXPOSE 8080
+EXPOSE $MOCK_SERVICE_PORT
 
 COPY docker-entrypoint.sh /
 RUN chmod 700 /docker-entrypoint.sh
