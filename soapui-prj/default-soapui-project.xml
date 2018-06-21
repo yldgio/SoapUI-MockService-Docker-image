@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="73f96546-7b24-4c6d-a1d6-23bf8d7fb7d6" activeEnvironment="Default" name="PostGis" resourceRoot="${projectDir}" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="a69617a0-51fe-4969-91e4-da22308ad79c" wsaVersion="NONE" name="GisServerBinding" type="wsdl" bindingName="{urn:GisServerInterface}GisServerBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/TFS/AVANADE/Verifica_Copertura_Multilayer_MAIN/Linkem.LayerProxy/Service%20References/PostGis/GisServerInterface.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\TFS\AVANADE\Verifica_Copertura_Multilayer_MAIN\Linkem.LayerProxy\Service%20References\PostGis\GisServerInterface.wsdl"><con:part><con:url>file:\C:\TFS\AVANADE\Verifica_Copertura_Multilayer_MAIN\Linkem.LayerProxy\Service%20References\PostGis\GisServerInterface.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="GisServerInterface" targetNamespace="urn:GisServerInterface" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="urn:GisServerInterface" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<con:soapui-project id="73f96546-7b24-4c6d-a1d6-23bf8d7fb7d6" activeEnvironment="Default" name="PostGis" resourceRoot="${projectDir}" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:WsdlInterface" id="a69617a0-51fe-4969-91e4-da22308ad79c" wsaVersion="NONE" name="GisServerBinding" type="wsdl" bindingName="{urn:GisServerInterface}GisServerBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/TFS/AVANADE/Verifica_Copertura_Multilayer_MAIN/Linkem.LayerProxy/Service%20References/PostGis/GisServerInterface.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="file:\C:\TFS\AVANADE\Verifica_Copertura_Multilayer_MAIN\Linkem.LayerProxy\Service%20References\PostGis\GisServerInterface.wsdl">
+      <con:part>
+        <con:url>file:\C:\TFS\AVANADE\Verifica_Copertura_Multilayer_MAIN\Linkem.LayerProxy\Service%20References\PostGis\GisServerInterface.wsdl</con:url>
+        <con:content><![CDATA[<wsdl:definitions name="GisServerInterface" targetNamespace="urn:GisServerInterface" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="urn:GisServerInterface" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="urn:GisServerInterface">
       <xsd:complexType name="getLayer_pointStruct">
@@ -33,10 +40,10 @@
   <wsdl:portType name="GisServerPortType">
     <wsdl:operation name="getLayer">
       <documentation>getLayer: Legge le informazioni del layer
-		               Input: 
+		               Input:
 							getLayer_prmIn.lat = latidutine  del punto (WGS84)
 							getLayer_prmIn.lon = longitudine del punto (WGS84)
-							getLayer_AppIdIn   = idenfificativo applicazione 
+							getLayer_AppIdIn   = idenfificativo applicazione
 					   Output:
 						    getLayer_retOut.retCode         = codice di ritorno, 0=OK, !=errore
 						    getLayer_retOut.retMsg          = messaggio di ritorno "OK" !="OK" descrizione errore
@@ -68,7 +75,25 @@
       <soap:address location="http://172.20.0.17/gisServer/gisserver.php"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://172.20.0.17/gisServer/gisserver.php</con:endpoint><con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint><con:endpoint>http://localhost:8080/mockGisServerBinding</con:endpoint></con:endpoints><con:operation id="44739727-eb97-42ca-9da1-fe21266b53fd" isOneWay="false" action="urn:getLayer" name="getLayer" bindingOperationName="getLayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4bd8dda6-6dea-4ca0-a098-061216815fb6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">\r
+</wsdl:definitions>]]></con:content>
+        <con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://172.20.0.17/gisServer/gisserver.php</con:endpoint>
+      <con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint>
+      <con:endpoint>http://localhost:8080/mockGisServerBinding</con:endpoint>
+      <con:endpoint>http://soapui:8080/mockGisServerBinding</con:endpoint>
+    </con:endpoints>
+    <con:operation id="44739727-eb97-42ca-9da1-fe21266b53fd" isOneWay="false" action="urn:getLayer" name="getLayer" bindingOperationName="getLayer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call id="4bd8dda6-6dea-4ca0-a098-061216815fb6" name="Request 1">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <urn:getLayer soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
@@ -79,7 +104,37 @@
          <getLayer_AppIdIn xsi:type="xsd:int">?</getLayer_AppIdIn>\r
       </urn:getLayer>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/><con:wsrmConfig version="1.2"/></con:call><con:call id="519f1539-b48a-40cc-8de3-7b303205f8c2" name="Request-ok"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/><con:wsrmConfig version="1.2"/></con:call><con:call id="54429246-80d3-4d84-b0be-e01c518dd279" name="Request ko"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">\r
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+      <con:call id="519f1539-b48a-40cc-8de3-7b303205f8c2" name="Request-ok">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint>
+        <con:request/>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+      <con:call id="54429246-80d3-4d84-b0be-e01c518dd279" name="Request ko">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://NB272:8080/mockGisServerBinding</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <urn:getLayer soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
@@ -90,7 +145,29 @@
          <getLayer_AppIdIn xsi:type="xsd:int">?</getLayer_AppIdIn>\r
       </urn:getLayer>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="87c334b0-eb51-4f5e-a7dd-b015b84ac8c6" port="8080" path="/mockGisServerBinding" host="localhost" name="GisServerBindingMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLayer" id="4f4eb21a-e142-483a-9658-954dc0932ac7" interface="GisServerBinding" operation="getLayer"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="24fd5c28-cdd9-4be2-b7fb-c0aeb0e0d435" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+  </con:interface>
+  <con:mockService id="87c334b0-eb51-4f5e-a7dd-b015b84ac8c6" port="8080" path="/mockGisServerBinding" host="soapui" name="GisServerBindingMock" bindToHostOnly="false" docroot="">
+    <con:settings>
+      <con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting>
+    </con:settings>
+    <con:properties/>
+    <con:mockOperation name="getLayer" id="4f4eb21a-e142-483a-9658-954dc0932ac7" interface="GisServerBinding" operation="getLayer">
+      <con:settings/>
+      <con:defaultResponse>Response 1</con:defaultResponse>
+      <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+      <con:response name="Response 1" id="24fd5c28-cdd9-4be2-b7fb-c0aeb0e0d435" httpResponseStatus="500" encoding="UTF-8">
+        <con:settings/>
+        <con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:getLayerResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
@@ -107,7 +184,12 @@
          </getLayer_retOut>
       </urn:getLayerResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/></con:response><con:response name="Response-ko" id="a90dc959-cd2e-42da-9833-5f25a24dbfd4" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
+</soapenv:Envelope>]]></con:responseContent>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+      </con:response>
+      <con:response name="Response-ko" id="a90dc959-cd2e-42da-9833-5f25a24dbfd4" httpResponseStatus="200" encoding="UTF-8">
+        <con:settings/>
+        <con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:getLayerResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
@@ -124,7 +206,12 @@
          </getLayer_retOut>
       </urn:getLayerResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/></con:response><con:response name="Response ok 2" id="24fd5c28-cdd9-4be2-b7fb-c0aeb0e0d435" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
+</soapenv:Envelope>]]></con:responseContent>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+      </con:response>
+      <con:response name="Response ok 2" id="24fd5c28-cdd9-4be2-b7fb-c0aeb0e0d435" httpResponseStatus="500" encoding="UTF-8">
+        <con:settings/>
+        <con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GisServerInterface">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:getLayerResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
@@ -141,4 +228,14 @@
          </getLayer_retOut>
       </urn:getLayerResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLayer"/>
+      </con:response>
+      <con:dispatchConfig/>
+    </con:mockOperation>
+  </con:mockService>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+</con:soapui-project>

@@ -1,18 +1,7 @@
-#######################################################################
-# Create an extensible SoapUI mock service runner image using CentOS
-#######################################################################
-
-# Use the centos 7 base image
 FROM centos:7
-
 MAINTAINER yldgio <yldgio@gmail.com>
-
-# Update the system
 RUN yum -y update;yum clean all
 
-##########################################################
-# Install Java JDK
-##########################################################
 COPY jdk-8u92-linux-x64.rpm /home/
 
 RUN rpm -Uvh /home/jdk-8u92-linux-x64.rpm && \
@@ -48,7 +37,7 @@ USER soapui
 ENV HOME /home/soapui
 ENV SOAPUI_DIR /home/soapui/SoapUI-5.2.1
 ENV SOAPUI_PRJ /home/soapui/soapui-prj
-ENV MOCK_SERVICE_PORT 8088
+ENV MOCK_SERVICE_PORT 54321
 
 ############################################
 # Add customization sub-directories (for entrypoint)
@@ -62,7 +51,6 @@ ADD soapui-prj                  $SOAPUI_PRJ
 ############################################
 USER root
 
-EXPOSE $MOCK_SERVICE_PORT
 
 COPY docker-entrypoint.sh /
 RUN chmod 700 /docker-entrypoint.sh
@@ -77,6 +65,8 @@ RUN find $SOAPUI_PRJ -type f -execdir chmod 660 {} \;
 # Start SoapUI mock service runner
 ############################################
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN chmod +x /docker-entrypoint.sh
+CMD ["/docker-entrypoint.sh"]
 
-CMD ["start-soapui"]
+EXPOSE $MOCK_SERVICE_PORT

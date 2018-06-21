@@ -34,8 +34,9 @@ if [ -z "$PROJECT" ]; then
 fi
 
 if [ -z "$MOCK_SERVICE_NAME" ]; then
-    echo "Enviromentment variable MOCK_SERVICE_NAME should have been set explicitly (e.g. by  -e MOCK_SERVICE_NAME=GisServerBindingMock"
-    exit 1
+    #echo "Enviromentment variable MOCK_SERVICE_NAME should have been set explicitly (e.g. by  -e MOCK_SERVICE_NAME=GisServerBindingMock"
+    #exit 1
+    export MOCK_SERVICE_NAME=GisServerBindingMock
 fi
 
 export PATH=$SOAPUI_DIR/bin:$PATH
@@ -55,21 +56,21 @@ function stopSoapUi {
 
 trap stopSoapUi TERM INT
 
-if [ "$1" = 'start-soapui' ]; then
+#if [ "$1" = 'start-soapui' ]; then
 
-    if [ -z "$MOCK_SERVICE_PATH" ]; then
-        echo "Starting Mock-service=$MOCK_SERVICE_NAME using default mockservice url-path from SoapUI-project=$PROJECT"
-        mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME $PROJECT <&3 &
-    else
-        echo "Starting Mock-service=$MOCK_SERVICE_NAME using url-path=$MOCK_SERVICE_PATH from SoapUI-project=$PROJECT"
-        mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME -a $MOCK_SERVICE_PATH $PROJECT <&3 &
-    fi
-
+if [ -z "$MOCK_SERVICE_PATH" ]; then
+    echo "Starting Mock-service=$MOCK_SERVICE_NAME using default mockservice url-path from SoapUI-project=$PROJECT"
+    exec mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME $PROJECT <&3 &
 else
-    echo "You can start the Mock-service manually by running"
-    echo ">>>  mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME $PROJECT"
-    gosu soapui "$@" <&3 &
+    echo "Starting Mock-service=$MOCK_SERVICE_NAME using url-path=$MOCK_SERVICE_PATH from SoapUI-project=$PROJECT"
+    exec mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME -a $MOCK_SERVICE_PATH $PROJECT <&3 &
 fi
+
+#else
+#    echo "You can start the Mock-service manually by running"
+#    echo ">>>  mockservicerunner.sh -Djava.awt.headless=true -p $MOCK_SERVICE_PORT -m $MOCK_SERVICE_NAME $PROJECT"
+#    gosu soapui "$@" <&3 &
+#fi
 
 # wait for mocksevicerunner to exit
 PID=$!
@@ -78,4 +79,3 @@ wait $PID
 trap - TERM INT
 # wait for stop to complete
 wait $PID
-
